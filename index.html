@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="CalmSphere — AI-powered mental wellness. Pause. Breathe. Reset.">
+  <title>CalmSphere — Pause. Breathe. Reset.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ===== WELCOME ===== -->
+  <section id="screen-welcome" class="screen active">
+    <div class="screen-inner">
+      <div class="welcome-glow" aria-hidden="true"></div>
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="30" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+          <circle cx="50" cy="50" r="8" fill="rgba(255,255,255,0.8)" />
+          <path d="M50 18 Q62 35 50 50 Q38 35 50 18Z" fill="rgba(255,255,255,0.3)" />
+          <path d="M50 82 Q38 65 50 50 Q62 65 50 82Z" fill="rgba(255,255,255,0.3)" />
+          <path d="M18 50 Q35 38 50 50 Q35 62 18 50Z" fill="rgba(255,255,255,0.2)" />
+          <path d="M82 50 Q65 62 50 50 Q65 38 82 50Z" fill="rgba(255,255,255,0.2)" />
+        </svg>
+      </div>
+      <h1 class="brand">CalmSphere</h1>
+      <p class="tagline">Pause. Breathe. Reset.</p>
+      <button id="btn-start" class="btn-hero">Check My State</button>
+      <p class="welcome-hint">We'll use your camera &amp; mic for a quick, gentle check-in.</p>
+    </div>
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="orb o1"></div>
+      <div class="orb o2"></div>
+      <div class="orb o3"></div>
+    </div>
+  </section>
+
+  <!-- ===== CAPTURE ===== -->
+  <section id="screen-capture" class="screen">
+    <div class="screen-inner">
+      <div class="cam-ring">
+        <video id="cam-video" autoplay playsinline muted></video>
+        <canvas id="cam-canvas" width="320" height="240"></canvas>
+        <div class="cam-overlay" id="cam-overlay">
+          <div class="scan-line"></div>
+          <div class="cam-icon-wrap">
+            <svg id="ic-cam" class="cam-ic" viewBox="0 0 48 48" fill="none">
+              <rect x="6" y="14" width="36" height="24" rx="4" stroke="#fff" stroke-width="2" />
+              <circle cx="24" cy="26" r="7" stroke="#fff" stroke-width="2" />
+              <path d="M17 14L19 10H29L31 14" stroke="#fff" stroke-width="2" />
+            </svg>
+            <svg id="ic-mic" class="cam-ic hidden" viewBox="0 0 48 48" fill="none">
+              <rect x="18" y="8" width="12" height="22" rx="6" stroke="#fff" stroke-width="2" />
+              <path d="M12 26C12 32.6 17.4 38 24 38S36 32.6 36 26" stroke="#fff" stroke-width="2"
+                stroke-linecap="round" />
+              <line x1="24" y1="38" x2="24" y2="44" stroke="#fff" stroke-width="2" />
+              <line x1="18" y1="44" x2="30" y2="44" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+        <svg class="progress-ring-svg" viewBox="0 0 200 200">
+          <circle class="pr-bg" cx="100" cy="100" r="95" />
+          <circle class="pr-fill" id="capture-ring" cx="100" cy="100" r="95" />
+        </svg>
+      </div>
+      <p class="cap-label" id="cap-label">Reading your expression…</p>
+      <p class="cap-sub">Stay relaxed — this only takes a moment.</p>
+    </div>
+  </section>
+
+  <!-- ===== INSIGHT ===== -->
+  <section id="screen-insight" class="screen">
+    <div class="screen-inner">
+      <div class="meter-wrap">
+        <svg class="meter-svg" viewBox="0 0 200 200">
+          <circle class="meter-bg" cx="100" cy="100" r="88" />
+          <circle class="meter-fill" id="meter-fill" cx="100" cy="100" r="88" />
+        </svg>
+        <div class="meter-label">
+          <span class="meter-val" id="meter-val">0</span>
+          <span class="meter-unit">stress</span>
+        </div>
+      </div>
+      <h2 class="insight-state" id="insight-state">Analyzing…</h2>
+      <p class="insight-msg" id="insight-msg"></p>
+      <button id="btn-dashboard" class="btn-hero small">See My Toolkit →</button>
+    </div>
+  </section>
+
+  <!-- ===== DASHBOARD ===== -->
+  <section id="screen-dashboard" class="screen">
+    <div class="screen-inner dash-inner">
+      <h2 class="dash-title">Your Calm Toolkit</h2>
+      <p class="dash-sub" id="dash-sub">Personalized for you</p>
+      <div class="dash-grid">
+        <button class="dash-card" data-module="bubbles">
+          <div class="dc-icon">🫧</div><span>Bubble Pop</span>
+        </button>
+        <button class="dash-card" data-module="ocean">
+          <div class="dc-icon">🌊</div><span>Ocean Rhythm</span>
+        </button>
+        <button class="dash-card" data-module="tree">
+          <div class="dc-icon">🌳</div><span>Grow a Tree</span>
+        </button>
+        <button class="dash-card" data-module="sounds">
+          <div class="dc-icon">🎵</div><span>Sound Therapy</span>
+        </button>
+        <button class="dash-card" data-module="breathe">
+          <div class="dc-icon">🤲</div><span>Haptic Breathe</span>
+        </button>
+        <button class="dash-card" data-module="smile">
+          <div class="dc-icon">😊</div><span>Smile Challenge</span>
+        </button>
+        <button class="dash-card" data-module="ambient">
+          <div class="dc-icon">🌌</div><span>Ambient Visuals</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: BUBBLE POP ===== -->
+  <section id="screen-bubbles" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title">Bubble Pop</h2>
+      <p class="mod-sub">Tap the bubbles. Let go of tension.</p>
+      <canvas id="bubble-canvas" class="game-canvas"></canvas>
+      <p class="mod-timer" id="bubble-timer">0:30</p>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: OCEAN RHYTHM ===== -->
+  <section id="screen-ocean" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title">Ocean Rhythm</h2>
+      <p class="mod-sub">Tap in rhythm with the waves.</p>
+      <canvas id="ocean-canvas" class="game-canvas"></canvas>
+      <div class="ocean-feedback" id="ocean-feedback">🌊</div>
+      <p class="mod-timer" id="ocean-timer">Match the rhythm</p>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: GROW A TREE ===== -->
+  <section id="screen-tree" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title">Grow a Tree</h2>
+      <p class="mod-sub">Each calm breath grows your tree.</p>
+      <canvas id="tree-canvas" class="game-canvas"></canvas>
+      <button id="btn-breathe-tree" class="btn-hero small">Hold to Breathe 🌿</button>
+      <p class="mod-timer" id="tree-progress">Growth: 0%</p>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: SOUND THERAPY ===== -->
+  <section id="screen-sounds" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title">Nature Sound Therapy</h2>
+      <p class="mod-sub" id="sound-sub">Selected for your state</p>
+      <div class="sound-visual">
+        <div class="sv-ring sv-r1"></div>
+        <div class="sv-ring sv-r2"></div>
+        <div class="sv-ring sv-r3"></div>
+        <div class="sv-icon" id="sound-icon">🌧️</div>
+      </div>
+      <p class="sound-name" id="sound-name">Rain Sounds</p>
+      <button id="btn-sound-toggle" class="btn-hero small">▶ Play</button>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: HAPTIC BREATHE ===== -->
+  <section id="screen-breathe" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title">Haptic Breathing</h2>
+      <p class="mod-sub">Feel the rhythm. Follow the circle.</p>
+      <div class="breathe-wrap">
+        <div class="breathe-circle" id="breathe-circle">
+          <span class="breathe-txt" id="breathe-txt">Ready</span>
+        </div>
+        <div class="breathe-outer-ring"></div>
+      </div>
+      <button id="btn-breathe-start" class="btn-hero small">Start Breathing</button>
+      <p class="mod-timer" id="breathe-phase">4 – 7 – 8 Pattern</p>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: SMILE CHALLENGE ===== -->
+  <section id="screen-smile" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title" id="smile-title">Smile Challenge 😊</h2>
+      <p class="mod-sub" id="smile-sub">Let's try a small smile…</p>
+      <div class="cam-ring small-cam">
+        <video id="smile-video" autoplay playsinline muted></video>
+        <canvas id="smile-canvas" width="320" height="240"></canvas>
+      </div>
+      <button id="btn-smile-start" class="btn-hero small">Start Camera</button>
+      <canvas id="confetti-canvas" class="confetti-layer"></canvas>
+    </div>
+  </section>
+
+  <!-- ===== MODULE: AMBIENT VISUAL ===== -->
+  <section id="screen-ambient" class="screen module-screen">
+    <div class="screen-inner">
+      <button class="btn-back" data-back="dashboard">← Back</button>
+      <h2 class="mod-title">Ambient Visuals</h2>
+      <p class="mod-sub">Relax and watch the sky.</p>
+      <canvas id="ambient-canvas" class="ambient-layer"></canvas>
+      <div class="ambient-controls">
+        <button class="amb-btn active" data-scene="stars">✨ Stars</button>
+        <button class="amb-btn" data-scene="clouds">☁️ Clouds</button>
+        <button class="amb-btn" data-scene="particles">💫 Particles</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

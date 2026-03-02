@@ -515,6 +515,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: .5rem;
+
   padding: 1.3rem .8rem;
   border-radius: 20px;
   background: var(--card-bg);
